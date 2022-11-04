@@ -1,6 +1,7 @@
 <?php include 'inc/header.php'; ?>
 
 <?php
+    
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -26,25 +27,9 @@
             $sql = "DELETE FROM product WHERE id='$product_id'";
             mysqli_query($conn, $sql);
             header('Location: dashboard.php');
-        } else if(isset($_POST['search'])) {
-            // Search Product
-            $p_name = filter_input(INPUT_POST, 'search_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            
-            if ($p_name == null) {
-                $sql = "SELECT * FROM product";
-                $result = mysqli_query($conn, $sql);
-                $products = mysqli_fetch_all($result);  
-            } else {
-                $p_name .= '%';
-                $sql = "SELECT * FROM product WHERE name LIKE '$p_name'";
-                $result = mysqli_query($conn, $sql);
-                if (mysqli_num_rows($result) > 0) {
-                    $products = mysqli_fetch_all($result);
-                } else {
-                    $products = null;
-                }
-            }
-        } else if(isset($_POST['orderBy'])) {
+        } 
+        // Sorting 
+        else if(isset($_POST['orderBy'])) {
             $order = $_POST['orderBy'];
             if ($order == 'name') {
                 $sql = "SELECT * FROM product ORDER BY name";
@@ -65,6 +50,30 @@
     }
 ?>
 
+<script>
+    function showResult(str) {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function() {
+            
+            if (this.readyState==4 && this.status==200) {
+                var product = document.querySelectorAll('.p-details');
+                if (str.length != 0) {
+                    for (i = 0; i < product.length; i++) {
+                        var p_name = product[i].querySelector(".p-d-name").innerText;
+                        if (p_name.indexOf(str) != 0) {
+                            product[i].classList.add('d-none');
+                        }
+                    }
+                } else {
+                    product.forEach((node) => node.classList.remove('d-none'));
+                }
+            }
+        }
+        xmlhttp.open("POST","dashboard.php?q="+str,true);
+        xmlhttp.send();
+    }
+</script>
+
 <section class="dashboard-section dashboard py-5">
     <div class="container">
         <div class="section-header text-center">
@@ -78,8 +87,8 @@
         </div>
         <div class="search-box my-2">
             <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> " method="POST">
-                <input name="search_name" type="text" class="form-control <?php echo $emailErr ? 'is-invalid' : null; ?>" id="floatingInput" placeholder="Product Name"> 
-                <input class="btn my-1" type="submit" name="search" value="Search">
+                <input onkeyup="showResult(this.value)" name="search_name" type="text" class="form-control" id="floatingInput" placeholder="Search"> 
+                
             </form>
         </div>
     </div>
@@ -100,9 +109,9 @@
                 </thead>
                 <tbody>
                     <?php for ($i = 0; $i < sizeof($products); $i++) : ?>
-                        <tr>
+                        <tr class="p-details">
                             <th scope="row"><?php echo $products[$i][0] ?></th>
-                            <td><?php echo $products[$i][1] ?></td>
+                            <td class="p-d-name"><?php echo $products[$i][1] ?></td>
                             <td><?php echo $products[$i][2] ?></td>
                             <td>
                                 <form action=" <?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> " method="POST">
