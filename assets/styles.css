@@ -1,0 +1,138 @@
+body {
+    font-family: "Poppins", sans-serif !important;
+}
+/* £££££££££
+    Hero
+   £££££££££ */
+.hero {
+    background-color: #008374;
+    color: white;
+    min-height: 80vh;
+}
+.hero h2 {
+    font-size: 58px;
+    font-weight: 700;
+    color: #fff;
+}
+.hero .btn-reg {
+    border-radius: 50px;
+    transition: 0.3s;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+.hero .btn-reg:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+.hero .btn-login {
+    transition: 0.5s;
+    margin-left: 25px;
+    color: #fff;
+    font-weight: 600;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+}
+.hero .btn-login:hover {
+    background-color: #fff;
+    color: #008374;
+}
+.hero p {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+/* £££££££££
+    Navbar
+   £££££££££ */
+.navbar {
+    padding: 20px 40px !important;
+    background-color: #008374;
+}
+.navbar a {
+    color: #fff !important;
+}
+.navbar .navbar-brand {
+    font-weight: bolder !important;
+    font-size: x-large !important;
+}
+.navbar .nav-link {
+    background: none;
+    background-color: none;
+    border: none;
+    margin-right: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+.navbar .nav-link:hover {
+    color: #fff !important;
+    transition: 0.5s;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: #f85a40;
+    text-underline-offset: 7px;
+    text-decoration-thickness: 3px;
+}
+
+/* £££££££££
+    Login section
+   £££££££££ */
+.login-section {
+    background-color: #008374;
+}
+
+/* £££££££££
+    Resistration section Product Section
+   £££££££££ */
+   .reg-section, .new-product {
+    background-color: #008374;
+}
+.products {
+    background-color: #f6f6f6;
+}
+.products h3 span {
+    color: #008374;
+    font-weight: 600;
+}
+
+/* £££££££££
+    Dashboard section
+   £££££££££ */
+.dashboard {
+    background-color: #f6f6f6e3;
+    
+    font-family: "Montserrat", sans-serif !important;
+}
+.dashboard h2 {
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.dashboard p {
+    color: #6f6f6f;
+}
+.dashboard .btn {
+    border-radius: 10px;
+    transition: 0.3s;
+    color: #fff;
+    background: #008374;
+    border: 2px solid #f6f6f6;
+}
+.dashboard .btn:hover {
+    background-color: #007e6f;
+}
+
+.search-box {
+    max-width: 200px;
+}
+.dashboard select {
+    max-width: 200px;
+}
+
+
+/* £££££££££
+    Footer section
+   £££££££££ */
+.footer {
+    background-color: #008374;
+    color: #fff;
+}
